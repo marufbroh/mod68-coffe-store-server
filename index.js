@@ -34,6 +34,13 @@ async function run() {
       res.send(result);
     });
 
+    app.get("/coffee/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await coffeeCollection.findOne(query);
+      res.send(result);
+    });
+
     app.post("/coffee", async (req, res) => {
       const newCoffee = req.body;
       //   console.log(newCoffee);
@@ -45,7 +52,7 @@ async function run() {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const result = await coffeeCollection.deleteOne(query);
-      res.send(result)
+      res.send(result);
     });
 
     // Send a ping to confirm a successful connection
